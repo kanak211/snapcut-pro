@@ -75,18 +75,18 @@ export class LocalHeuristicSegmenter implements Segmenter {
     for (let x = 0; x < width; x++) {
       for (const y of [0, height - 1]) {
         const i = (y * width + x) * 4;
-        br += data[i];
-        bg += data[i + 1];
-        bb += data[i + 2];
+        br += data[i]!;
+        bg += data[i + 1]!;
+        bb += data[i + 2]!;
         count++;
       }
     }
     for (let y = 0; y < height; y++) {
       for (const x of [0, width - 1]) {
         const i = (y * width + x) * 4;
-        br += data[i];
-        bg += data[i + 1];
-        bb += data[i + 2];
+        br += data[i]!;
+        bg += data[i + 1]!;
+        bb += data[i + 2]!;
         count++;
       }
     }
@@ -123,7 +123,7 @@ export class LocalHeuristicSegmenter implements Segmenter {
       const idx = stack.pop()!;
       const i = idx * 4;
       const dist = Math.sqrt(
-        (data[i] - br) ** 2 + (data[i + 1] - bg) ** 2 + (data[i + 2] - bb) ** 2,
+        (data[i]! - br) ** 2 + (data[i + 1]! - bg) ** 2 + (data[i + 2]! - bb) ** 2,
       );
       if (dist > tolerance) continue;
       alpha[idx] = 0;
@@ -151,7 +151,7 @@ export class LocalHeuristicSegmenter implements Segmenter {
           for (let dx = -1; dx <= 1; dx++) {
             const xx = x + dx;
             if (xx < 0 || xx >= width) continue;
-            sum += alpha[yy * width + xx];
+            sum += alpha[yy * width + xx]!;
             n++;
           }
         }
@@ -160,7 +160,7 @@ export class LocalHeuristicSegmenter implements Segmenter {
     }
 
     for (let idx = 0; idx < total; idx++) {
-      data[idx * 4 + 3] = Math.round(Math.min(1, Math.max(0, blurred[idx])) * 255);
+      data[idx * 4 + 3] = Math.round(Math.min(1, Math.max(0, blurred[idx]!)) * 255);
     }
 
     ctx.putImageData(image, 0, 0);
