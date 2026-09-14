@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiRouteImport } from './routes/api'
+import { Route as BatchRouteImport } from './routes/batch'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RemoveBackgroundRouteImport } from './routes/remove-background'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRoute = ApiRouteImport.update({
+  id: '/api',
+  path: '/api',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BatchRoute = BatchRouteImport.update({
+  id: '/batch',
+  path: '/batch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RemoveBackgroundRoute = RemoveBackgroundRouteImport.update({
+  id: '/remove-background',
+  path: '/remove-background',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api': typeof ApiRoute
+  '/batch': typeof BatchRoute
+  '/features': typeof FeaturesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
+  '/remove-background': typeof RemoveBackgroundRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api': typeof ApiRoute
+  '/batch': typeof BatchRoute
+  '/features': typeof FeaturesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
+  '/remove-background': typeof RemoveBackgroundRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api': typeof ApiRoute
+  '/batch': typeof BatchRoute
+  '/features': typeof FeaturesRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
+  '/remove-background': typeof RemoveBackgroundRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api'
+    | '/batch'
+    | '/features'
+    | '/how-it-works'
+    | '/privacy'
+    | '/remove-background'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api'
+    | '/batch'
+    | '/features'
+    | '/how-it-works'
+    | '/privacy'
+    | '/remove-background'
+  id:
+    | '__root__'
+    | '/'
+    | '/api'
+    | '/batch'
+    | '/features'
+    | '/how-it-works'
+    | '/privacy'
+    | '/remove-background'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiRoute: typeof ApiRoute
+  BatchRoute: typeof BatchRoute
+  FeaturesRoute: typeof FeaturesRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RemoveBackgroundRoute: typeof RemoveBackgroundRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api': {
+      id: '/api'
+      path: '/api'
+      fullPath: '/api'
+      preLoaderRoute: typeof ApiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/batch': {
+      id: '/batch'
+      path: '/batch'
+      fullPath: '/batch'
+      preLoaderRoute: typeof BatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/remove-background': {
+      id: '/remove-background'
+      path: '/remove-background'
+      fullPath: '/remove-background'
+      preLoaderRoute: typeof RemoveBackgroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiRoute: ApiRoute,
+  BatchRoute: BatchRoute,
+  FeaturesRoute: FeaturesRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  PrivacyRoute: PrivacyRoute,
+  RemoveBackgroundRoute: RemoveBackgroundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
